@@ -1,0 +1,15 @@
+appId: com.ultrasonic.array-host
+productName: 超声阵列控制台
+directories:
+  output: release
+files:
+  - out/**/*
+extraResources:
+  - from: config/
+    to: config/
+asar: true
+npmRebuild: false
+win:
+  target:
+    - portable
+  icon: build/icons/icon.ico

@@ -1,0 +1,46 @@
+/**
+ * @file buttons.css
+ * @description 按钮变体样式（primary / secondary / danger / ble）。
+ * @author EternoPax
+ * @version 1.0.0
+ */
+
+.primary-button {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.primary-button:hover { background: linear-gradient(135deg, #60a5fa, #3b82f6); border-color: rgba(96, 165, 250, 0.6); }
+
+.secondary-button { background: var(--panel-strong); }
+
+.danger-button {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.danger-button:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+.ble-button {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  font-weight: 600;
+}
+
+.ble-button:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  background: rgba(168, 85, 247, 0.2);
+}
+
+.ble-button.connected {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #86efac;
+}

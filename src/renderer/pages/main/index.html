@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>超声阵列控制台</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-title">超声阵列控制台</div>
+          <div class="brand-subtitle">5×5阵列波束偏转、聚焦与声压控制</div>
+        </div>
+
+        <div class="connection-bar">
+          <label class="field compact">
+            <span>端口</span>
+            <select id="portSelect"></select>
+          </label>
+          <button id="refreshPortsButton" class="secondary-button">刷新</button>
+          <label class="field compact">
+            <span>波特率</span>
+            <select id="baudSelect">
+              <option value="115200" selected>115200</option>
+              <option value="9600">9600</option>
+            </select>
+          </label>
+          <button id="connectButton" class="primary-button">连接</button>
+          <button id="bleScanButton" class="ble-button">BLE 扫描</button>
+          <div id="connectionStatus" class="status-line">未连接</div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <!-- Left: Controls -->
+        <section class="controls-panel">
+          <div class="panel-head">
+            <h2 id="taskTitle">任务 1：加窗波束偏转</h2>
+          </div>
+
+          <div class="task-tabs">
+            <button id="taskTab_task1" class="task-tab active" data-task="task1">任务 1</button>
+            <button id="taskTab_task2" class="task-tab" data-task="task2">任务 2</button>
+            <button id="taskTab_task3" class="task-tab" data-task="task3">任务 3</button>
+          </div>
+
+          <div class="summary-block">
+            <div class="summary-pill" id="missionBadge">任务 1</div>
+            <div id="taskSummary" class="summary-text"></div>
+          </div>
+
+          <div class="controls-grid">
+            <div class="control-row">
+              <div class="control-label">θ 角 X</div>
+              <input id="thetaXRange" type="range" min="-30" max="30" step="0.1" value="0" />
+              <input id="thetaXNumber" type="number" min="-30" max="30" step="0.1" value="0" />
+              <div class="control-unit">度</div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-label">θ 角 Y</div>
+              <input id="thetaYRange" type="range" min="-30" max="30" step="0.1" value="0" />
+              <input id="thetaYNumber" type="number" min="-30" max="30" step="0.1" value="0" />
+              <div class="control-unit">度</div>
+            </div>
+
+            <div id="focusRow" class="control-row">
+              <div class="control-label">焦距</div>
+              <input id="focusRange" type="range" min="300" max="1500" step="10" value="800" />
+              <input id="focusNumber" type="number" min="300" max="1500" step="10" value="800" />
+              <div class="control-unit">毫米</div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-label">增益</div>
+              <input id="gainRange" type="range" min="0" max="100" step="1" value="100" />
+              <input id="gainNumber" type="number" min="0" max="100" step="1" value="100" />
+              <div class="control-unit">%</div>
+            </div>
+
+            <label id="windowField" class="field wide">
+              <span>窗函数</span>
+              <select id="windowSelect">
+                <option value="Flat">平坦</option>
+                <option value="Stage2" selected>二级</option>
+                <option value="Hann">汉恩</option>
+                <option value="Hamming">汉明</option>
+              </select>
+            </label>
+
+            <label id="powerPolicyField" class="field wide">
+              <span>功率策略</span>
+              <select id="powerPolicySelect">
+                <option value="peak">峰值限制</option>
+                <option value="equal_rms">等 RMS</option>
+              </select>
+            </label>
+
+            <label id="pressureStrategyField" class="field wide hidden">
+              <span>压力策略</span>
+              <select id="pressureStrategySelect">
+                <option value="max_pressure">最大压力</option>
+                <option value="balanced_focus">均衡聚焦</option>
+                <option value="equal_rms_compare">等-RMS 对比</option>
+              </select>
+            </label>
+
+            <label class="checkbox-row">
+              <input id="adcCheckbox" type="checkbox" />
+              <span>启用 ADC 包络</span>
+            </label>
+          </div>
+
+          <div class="preset-section">
+            <div class="section-title">音频占空比上限</div>
+            <label class="field wide">
+              <span>音频文件</span>
+              <input id="audioFileInput" type="file" accept="audio/*" />
+            </label>
+            <div class="control-row">
+              <div class="control-label">音频幅度</div>
+              <input id="audioGainRange" type="range" min="0" max="100" step="1" value="100" />
+              <input id="audioGainNumber" type="number" min="0" max="100" step="1" value="100" />
+              <div class="control-unit">%</div>
+            </div>
+            <div class="button-row">
+              <button id="audioStartButton" class="secondary-button">开始音频发送</button>
+              <button id="audioStopButton" class="danger-button">停止音频</button>
+            </div>
+            <div id="audioStatus" class="status-line">未选择音频</div>
+          </div>
+
+          <div class="preset-section">
+            <div class="section-title">任务预设</div>
+            <div id="presetButtons" class="preset-grid"></div>
+          </div>
+
+          <div class="button-row">
+            <button id="applyBeamButton" class="primary-button">应用任务</button>
+            <button id="getStatusButton" class="secondary-button">获取状态</button>
+            <button id="disableRemoteButton" class="danger-button">关闭远程</button>
+          </div>
+
+          <div class="status-strip">
+            <div class="status-item"><span>影子</span><strong id="shadowState">关</strong></div>
+            <div class="status-item"><span>活跃</span><strong id="activeState">关</strong></div>
+            <div class="status-item"><span>ADC</span><strong id="adcState">关</strong></div>
+            <div class="status-item"><span>等待</span><strong id="pendingState">否</strong></div>
+            <div class="status-item"><span>本地</span><strong id="localState">0/0</strong></div>
+            <div class="status-item"><span>协议</span><strong id="protocolState">-</strong></div>
+          </div>
+        </section>
+
+        <!-- Center: Visual -->
+        <section class="visual-panel">
+          <div class="panel-head">
+            <h2>预测声场</h2>
+            <label class="field compact">
+              <select id="viewModeSelect">
+                <option value="surface">3D 曲面</option>
+                <option value="heatmap">2D 平面</option>
+                <option value="volume">3D 体积</option>
+              </select>
+            </label>
+            <div id="missionNote" class="status-line"></div>
+          </div>
+
+          <div class="canvas-shell">
+            <canvas id="beamCanvas" width="700" height="400"></canvas>
+          </div>
+          <div id="beamCaption" class="canvas-caption"></div>
+
+          <div class="panel-head secondary-head">
+            <h2>5×5 阵列</h2>
+            <div class="legend-row">
+              <div class="legend-item">
+                <span class="legend-swatch phase-swatch"></span>
+                <span>相位色相</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-swatch amp-swatch"></span>
+                <span>幅度尺寸</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="arrayGrid" class="array-grid"></div>
+        </section>
+
+        <!-- Right: Detail -->
+        <section class="detail-panel">
+          <div class="detail-section">
+            <div class="panel-head">
+              <h2>任务指标</h2>
+            </div>
+            <div id="metricsGrid" class="metrics-grid"></div>
+          </div>
+
+          <div class="detail-section">
+            <div class="panel-head">
+              <h2>选中阵元</h2>
+            </div>
+            <div id="selectedCard" class="selected-card"></div>
+          </div>
+
+          <div class="detail-section">
+            <div class="panel-head">
+              <h2>数据表</h2>
+            </div>
+            <div class="table-columns">
+              <div class="table-block">
+                <div class="table-title">相位</div>
+                <pre id="phaseTableText"></pre>
+              </div>
+              <div class="table-block">
+                <div class="table-title">幅度</div>
+                <pre id="ampTableText"></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Floating draggable activity log -->
+    <div id="activityLogPanel" class="activity-log-panel">
+      <div id="activityLogHeader" class="activity-log-header">
+        <span class="activity-log-title">活动日志</span>
+        <div class="activity-log-actions">
+          <button id="clearLogButton" class="log-action-btn" title="清空日志">清空</button>
+          <button id="toggleLogButton" class="log-action-btn" title="折叠/展开">−</button>
+        </div>
+      </div>
+      <div id="activityLogBody" class="activity-log-body">
+        <div id="activityLog" class="activity-log"></div>
+      </div>
+    </div>
+
+    <!-- BLE device selection dialog -->
+    <div id="bleOverlay" class="ble-overlay hidden">
+      <div class="ble-dialog">
+        <h3>选择蓝牙设备</h3>
+        <p>发现以下 BLE 设备，请选择一个：</p>
+        <div id="bleDeviceList" class="ble-device-list"></div>
+        <div class="ble-dialog-buttons">
+          <button id="bleCancelBtn" class="secondary-button">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

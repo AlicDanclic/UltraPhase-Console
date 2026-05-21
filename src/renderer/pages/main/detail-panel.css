@@ -1,0 +1,81 @@
+/**
+ * @file detail-panel.css
+ * @description 指标网格、选中阵元卡片、数据表、状态条。
+ * @author EternoPax
+ * @version 1.0.0
+ */
+
+/* ── Status strip ─────────────────────────────────────────── */
+
+.status-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #151515;
+}
+
+.status-item span { font-size: 10px; color: var(--text-dim); }
+.status-item strong { font-size: 12px; }
+
+/* ── Metrics grid ─────────────────────────────────────────── */
+
+.metrics-grid { display: grid; gap: 4px; }
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #151515;
+}
+
+.metric-label { font-size: 11px; color: var(--text-dim); }
+.metric-value { font-size: 11px; font-weight: 600; }
+
+/* ── Selected card ────────────────────────────────────────── */
+
+.selected-card { display: grid; gap: 3px; }
+
+.selected-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #151515;
+  font-size: 11px;
+}
+
+.selected-key { color: var(--text-dim); }
+
+/* ── Data tables ──────────────────────────────────────────── */
+
+.table-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.table-block {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #151515;
+  padding: 8px;
+}
+
+.table-title { font-size: 11px; color: var(--text-dim); margin-bottom: 4px; font-weight: 600; }
+
+.table-block pre {
+  margin: 0;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text);
+  white-space: pre;
+}

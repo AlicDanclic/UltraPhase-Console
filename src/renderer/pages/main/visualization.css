@@ -1,0 +1,85 @@
+/**
+ * @file visualization.css
+ * @description Canvas 声场热力图、图例、5×5 阵列网格。
+ * @author EternoPax
+ * @version 1.0.0
+ */
+
+/* ── Canvas ───────────────────────────────────────────────── */
+
+.canvas-shell {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.canvas-shell canvas {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 42vh, 460px);
+}
+.canvas-caption { font-size: 11px; color: var(--text-dim); margin-bottom: 10px; }
+
+/* ── Legend ────────────────────────────────────────────────── */
+
+.legend-row { display: flex; gap: 12px; }
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+.phase-swatch { background: linear-gradient(90deg, hsl(0 0% 40%), hsl(0 0% 70%), hsl(0 0% 100%)); }
+.amp-swatch { background: var(--text-dim); border-radius: 50%; width: 10px; height: 10px; }
+
+/* ── Array grid ───────────────────────────────────────────── */
+
+.array-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+.array-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 2px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #151515;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.array-cell:hover { border-color: var(--text-dim); }
+
+.array-cell.selected {
+  border-color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cell-label { font-size: 10px; color: var(--text-dim); font-weight: 600; }
+
+.cell-visual {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-dot {
+  width: var(--dot-size, 20px);
+  height: var(--dot-size, 20px);
+  border-radius: 50%;
+  background: hsl(var(--dot-hue, 0) 80% var(--dot-light, 50%));
+  transition: width 0.2s, height 0.2s, background 0.2s;
+}
+
+.cell-values { font-size: 9px; color: var(--text-dim); text-align: center; line-height: 1.4; }

@@ -1,0 +1,22 @@
+/**
+ * @file variables.css
+ * @description CSS 自定义属性定义。
+ * @author EternoPax
+ * @version 1.0.0
+ */
+
+:root {
+  color-scheme: dark;
+  --bg: #111111;
+  --panel: #1a1a1a;
+  --panel-strong: #222222;
+  --line: #333333;
+  --line-strong: #444444;
+  --text: #e0e0e0;
+  --text-dim: #888888;
+  --accent: #ffffff;
+  --accent-soft: rgba(255, 255, 255, 0.08);
+  --danger: #cc4444;
+  --danger-soft: rgba(204, 68, 68, 0.12);
+  --shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}

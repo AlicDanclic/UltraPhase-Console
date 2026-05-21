@@ -1,0 +1,32 @@
+{
+  "name": "ultrasonic-array-host",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "description": "超声阵列上位机 - COM串口 + BLE蓝牙",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "package": "electron-vite build && electron-builder --win",
+    "preview": "electron-vite preview",
+    "start": "electron-vite preview",
+    "server": "node src/main/server/standalone.js",
+    "check": "node --check src/main/index.js && node --check src/preload/main.preload.js && node --check src/main/windowManager.js && node --check src/main/protocol/index.js && node --check src/main/protocol/frame.js && node --check src/main/protocol/transport.js && node --check src/main/protocol/port-discovery.js && node --check src/main/ipc/index.js && node --check src/main/ipc/serial.handlers.js && node --check src/main/ipc/beam.handlers.js && node --check src/main/ipc/ble.handlers.js && node --check src/main/server/index.js && node --check src/main/server/routes.js && node --check src/main/server/static.js && node --check src/main/server/standalone.js",
+    "test": "echo \"TODO: add tests\"",
+    "lint": "eslint src/",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "serialport": "^13.0.0",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-vite": "^3.1.0",
+    "electron-builder": "^25.1.8",
+    "playwright": "^1.60.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.4.0"
+  }
+}

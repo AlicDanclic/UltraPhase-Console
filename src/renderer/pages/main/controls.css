@@ -1,0 +1,134 @@
+/**
+ * @file controls.css
+ * @description 控件网格、任务标签页、摘要、预设按钮、操作按钮行。
+ * @author EternoPax
+ * @version 1.0.0
+ */
+
+/* ── Task tabs ────────────────────────────────────────────── */
+
+.task-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+
+.task-tab {
+  flex: 1;
+  padding: 8px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #151515;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.task-tab:hover { border-color: var(--text-dim); }
+
+.task-tab.active {
+  background: var(--accent-soft);
+  border-color: var(--text-dim);
+  color: var(--text);
+}
+
+.task-tab[data-task="task1"].active {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #93bbfd;
+}
+
+.task-tab[data-task="task2"].active {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.5);
+  color: #d4b5fd;
+}
+
+.task-tab[data-task="task3"].active {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #fcd48a;
+}
+
+/* ── Summary ──────────────────────────────────────────────── */
+
+.summary-block {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #151515;
+  margin-bottom: 12px;
+}
+
+.summary-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.summary-text { color: var(--text-dim); font-size: 12px; line-height: 1.5; }
+
+/* ── Controls ─────────────────────────────────────────────── */
+
+.controls-grid { display: grid; gap: 8px; margin-bottom: 12px; }
+
+.control-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 60px 36px;
+  align-items: center;
+  gap: 6px;
+}
+
+.control-label { font-size: 12px; color: var(--text-dim); text-align: right; }
+.control-unit { font-size: 11px; color: var(--text-dim); text-align: left; }
+
+.control-row input[type="number"] {
+  width: 100%;
+  padding: 5px 6px;
+  font-size: 12px;
+}
+
+.field.wide {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field.wide span { font-size: 12px; color: var(--text-dim); }
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.checkbox-row input[type="checkbox"] { accent-color: var(--text); }
+
+/* ── Presets ──────────────────────────────────────────────── */
+
+.preset-section { margin-bottom: 12px; }
+.section-title { font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
+
+.preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+
+.preset-button {
+  padding: 8px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #151515;
+  color: var(--text);
+  font-size: 12px;
+  text-align: center;
+}
+
+.preset-button:hover { border-color: var(--text-dim); background: rgba(255, 255, 255, 0.05); }
+
+/* ── Action buttons ───────────────────────────────────────── */
+
+.button-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.button-row button { flex: 1; font-size: 12px; padding: 8px 6px; }

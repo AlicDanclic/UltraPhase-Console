@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="100%" stop-color="#141432"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#00aaff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0055ff" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00aaff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00aaff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="url(#bg)"/>
+
+  <!-- Outer glow -->
+  <circle cx="256" cy="260" r="200" fill="url(#glow)"/>
+
+  <!-- Wave arcs (3 layers) -->
+  <g opacity="0.15" filter="url(#blur2)">
+    <ellipse cx="256" cy="380" rx="180" ry="40" fill="none" stroke="#00aaff" stroke-width="3"/>
+    <ellipse cx="256" cy="380" rx="140" ry="30" fill="none" stroke="#00aaff" stroke-width="3"/>
+    <ellipse cx="256" cy="380" rx="100" ry="20" fill="none" stroke="#00aaff" stroke-width="3"/>
+  </g>
+
+  <!-- Wave arcs (main) -->
+  <g fill="none" stroke="#00aaff" stroke-linecap="round">
+    <!-- Arc 1 (far) -->
+    <path d="M 106 340 Q 256 260 406 340" stroke-width="2.5" opacity="0.25"/>
+    <!-- Arc 2 -->
+    <path d="M 130 320 Q 256 255 382 320" stroke-width="3" opacity="0.35"/>
+    <!-- Arc 3 -->
+    <path d="M 154 300 Q 256 248 358 300" stroke-width="3.5" opacity="0.5"/>
+    <!-- Arc 4 -->
+    <path d="M 178 280 Q 256 240 334 280" stroke-width="4" opacity="0.7"/>
+    <!-- Arc 5 (near) -->
+    <path d="M 200 262 Q 256 238 312 262" stroke-width="4.5" opacity="0.9"/>
+  </g>
+
+  <!-- Beam cone (blue glow) -->
+  <polygon points="256,380 196,140 316,140" fill="url(#beam)" opacity="0.12"/>
+  <polygon points="256,380 216,170 296,170" fill="url(#beam)" opacity="0.08"/>
+
+  <!-- Beam center line -->
+  <line x1="256" y1="380" x2="256" y2="130" stroke="#00aaff" stroke-width="1.5" opacity="0.4" stroke-dasharray="8,6"/>
+
+  <!-- 5×5 Array grid -->
+  <g transform="translate(256, 380)">
+    <!-- Grid lines -->
+    <g stroke="#1a3a5a" stroke-width="1" opacity="0.5">
+      <line x1="-48" y1="-16" x2="48" y2="-16"/>
+      <line x1="-48" y1="0" x2="48" y2="0"/>
+      <line x1="-48" y1="16" x2="48" y2="16"/>
+      <line x1="-48" y1="-32" x2="48" y2="-32"/>
+      <line x1="-48" y1="32" x2="48" y2="32"/>
+      <line x1="-32" y1="-48" x2="-32" y2="48"/>
+      <line x1="-16" y1="-48" x2="-16" y2="48"/>
+      <line x1="0" y1="-48" x2="0" y2="48"/>
+      <line x1="16" y1="-48" x2="16" y2="48"/>
+      <line x1="32" y1="-48" x2="32" y2="48"/>
+    </g>
+
+    <!-- Array elements (5×5) -->
+    <g>
+      <!-- Row 0 -->
+      <circle cx="-32" cy="-32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="-16" cy="-32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="0" cy="-32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="16" cy="-32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="32" cy="-32" r="5" fill="#00aaff" opacity="0.9"/>
+      <!-- Row 1 -->
+      <circle cx="-32" cy="-16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="-16" cy="-16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="0" cy="-16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="16" cy="-16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="32" cy="-16" r="5" fill="#00aaff" opacity="0.9"/>
+      <!-- Row 2 -->
+      <circle cx="-32" cy="0" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="-16" cy="0" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="0" cy="0" r="6" fill="#ffffff" opacity="1"/>
+      <circle cx="16" cy="0" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="32" cy="0" r="5" fill="#00aaff" opacity="0.9"/>
+      <!-- Row 3 -->
+      <circle cx="-32" cy="16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="-16" cy="16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="0" cy="16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="16" cy="16" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="32" cy="16" r="5" fill="#00aaff" opacity="0.9"/>
+      <!-- Row 4 -->
+      <circle cx="-32" cy="32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="-16" cy="32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="0" cy="32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="16" cy="32" r="5" fill="#00aaff" opacity="0.9"/>
+      <circle cx="32" cy="32" r="5" fill="#00aaff" opacity="0.9"/>
+    </g>
+
+    <!-- Element glow -->
+    <g filter="url(#blur1)" opacity="0.4">
+      <circle cx="0" cy="0" r="10" fill="#00aaff"/>
+      <circle cx="-32" cy="-32" r="8" fill="#00aaff"/>
+      <circle cx="32" cy="-32" r="8" fill="#00aaff"/>
+      <circle cx="-32" cy="32" r="8" fill="#00aaff"/>
+      <circle cx="32" cy="32" r="8" fill="#00aaff"/>
+    </g>
+  </g>
+
+  <!-- Focal point marker -->
+  <circle cx="256" cy="150" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="256" cy="150" r="14" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="256" cy="150" r="22" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+
+  <!-- Top label -->
+  <text x="256" y="72" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="36" fill="#ffffff" letter-spacing="3">
+    PAU
+  </text>
+  <text x="256" y="98" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="14" fill="#6aafff" letter-spacing="5">
+    PHASED ARRAY ULTRASONIC
+  </text>
+
+  <!-- Bottom label -->
+  <text x="256" y="458" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="2">
+    超声阵列控制台
+  </text>
+  <text x="256" y="480" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="12" fill="#5588aa" letter-spacing="1">
+    v1.0.2 · 5×5 · 40kHz
+  </text>
+</svg>

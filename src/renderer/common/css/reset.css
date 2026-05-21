@@ -1,0 +1,48 @@
+/**
+ * @file reset.css
+ * @description 全局重置与基础元素样式。
+ * @author EternoPax
+ * @version 1.0.0
+ */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+}
+
+body { min-width: 1200px; }
+
+button, select, input { font: inherit; }
+
+button {
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 7px 12px;
+  background: var(--panel-strong);
+  color: var(--text);
+  cursor: pointer;
+}
+
+button:hover { border-color: var(--text-dim); }
+button:disabled, select:disabled, input:disabled { opacity: 0.55; cursor: not-allowed; }
+
+select, input[type="number"] {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 7px 10px;
+  background: #151515;
+  color: var(--text);
+}
+
+input[type="range"] { width: 100%; accent-color: var(--text); }
+
+.hidden { display: none !important; }
+.disabled-field span { opacity: 0.65; }

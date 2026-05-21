@@ -1,0 +1,81 @@
+# 依赖目录
+node_modules/
+
+# 构建输出
+dist/
+out/
+release/
+
+# build 目录保留图标资源
+build/*
+!build/icons/
+
+# 打包相关临时文件
+*.exe
+*.dmg
+*.pkg
+*.deb
+*.rpm
+*.AppImage
+*.snap
+*.7z
+*.zip
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 本地持久化数据
+*.db
+*.sqlite
+*.sqlite3
+electron-builder.env
+
+# 操作系统生成文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE 及编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.~lock.*
+.nyc_output
+
+# 测试覆盖率
+coverage/
+.nyc_output
+
+# TypeScript 缓存
+*.tsbuildinfo
+
+# 可选：忽略缓存目录
+.cache/
+.tmp/
+temp/
+
+# 可选：忽略 Electron 主进程编译产生的临时文件（如果使用了 TypeScript 且输出到 lib/ 等目录）
+# lib/
+
+# 可选：忽略应用打包签名文件
+*.p12
+*.pfx
+*.cert
+*.key
+*.code-workspace

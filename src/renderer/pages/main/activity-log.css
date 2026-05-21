@@ -1,0 +1,89 @@
+/**
+ * @file activity-log.css
+ * @description 浮动可拖拽活动日志面板。
+ * @author EternoPax
+ * @version 1.0.0
+ */
+
+.activity-log-panel {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  width: 360px;
+  max-height: 260px;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.activity-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background: var(--panel-strong);
+  border-bottom: 1px solid var(--line);
+  cursor: move;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.activity-log-title { font-size: 12px; font-weight: 600; color: var(--text-dim); }
+
+.activity-log-actions { display: flex; gap: 4px; }
+
+.log-action-btn {
+  padding: 2px 8px;
+  font-size: 11px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #151515;
+  color: var(--text-dim);
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.log-action-btn:hover { border-color: var(--text-dim); color: var(--text); }
+
+.activity-log-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+.activity-log-panel.collapsed .activity-log-body { display: none; }
+.activity-log-panel.collapsed { max-height: none; }
+
+.activity-log {
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+}
+
+.activity-entry {
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #151515;
+  font-size: 11px;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.activity-entry.error {
+  border-color: rgba(204, 68, 68, 0.5);
+  background: rgba(204, 68, 68, 0.08);
+}
+
+.activity-time {
+  display: inline;
+  margin-right: 6px;
+  color: var(--text-dim);
+  font-size: 10px;
+}
